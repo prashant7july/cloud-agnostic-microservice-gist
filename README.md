@@ -21,7 +21,7 @@ The various services in the sample application already include all required and 
 
 ## Diagram Link
 * [Diagram](https://app.diagrams.net/#G1_EmBlzU-CQhmRvWVPbbzbk6SMK2XqmEP)
-![Diagram](https://github.com/prashant7july/micro-gist/blob/main/assets/E-commerce-Solution.png?raw=true)
+![Diagram](https://github.com/prashant7july/cloud-agnostic-microservice-gist/blob/main/assets/E-commerce-Solution.png?raw=true)
 
 ## Kubernetes
 You can run Kubernetes locally using [minikube](https://github.com/kubernetes/minikube) or on one of the many cloud providers.
