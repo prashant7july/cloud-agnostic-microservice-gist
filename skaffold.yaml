@@ -1,0 +1,75 @@
+apiVersion: skaffold/v2beta4
+kind: Config
+build:
+  local:
+    push: false
+  artifacts:
+  # image tags are relative; to specify an image repo (e.g. GCR), you
+  # must provide a "default repo" using one of the methods described 
+  # here:
+  # https://skaffold.dev/docs/concepts/#image-repository-handling
+  # User Module
+  - image:  rs-mongodb
+    context: user-mongo-service
+  - image: rs-user
+    context: user-service
+  # Catalogue Module
+  - image:  rs-catalogue-mongodb
+    context: catalogue-mongo-service
+  - image: rs-catalogue
+    context: catalogue-service
+  # Cart Module
+  - image: rs-cart
+    context: cart-service  
+  # Shipping Module
+  - image:  rs-mysql-shipping-db
+    context: shipping-mysql-service
+  - image: rs-shipping
+    context: shipping-service
+  # Payment Module as Producer
+  - image:  rs-payment
+    context: payment-service
+  # Dispatch Module as Consumer
+  - image:  rs-dispatch
+    context: dispatch-service
+    docker:
+      dockerfile: Dockerfile.third
+  # Rating MySQL
+  - image:  rs-mysql-db
+    context: ratings-mysql-service
+  # Rating Module
+  - image:  rs-ratings
+    context: ratings-service
+  # Web Module
+  - image:  rs-web
+    context: web-service
+    docker:
+      dockerfile: Dockerfile.proxy
+  tagPolicy:
+    envTemplate:
+      template: '{{.IMAGE_NAME}}:0.0.1'
+deploy:
+  kubectl:
+    manifests:
+    # Configuration
+    - ./config-manifest/**.yaml
+    # Used in User/Cart Module
+    - ./redis-manifest/**.yaml
+    # User Module
+    - ./user-manifest/**.yaml
+    # Catalogue Module
+    - ./catalogue-manifest/**.yaml
+    # Cart Module
+    - ./cart-manifest/**.yaml
+    # Shipping Module
+    - ./shipping-manifest/**.yaml
+    # AMQ Module
+    - ./rabbitmq-manifest/**.yaml
+    # Payment Module
+    - ./payment-manifest/**.yaml
+    # Dispatch Module
+    - ./dispatch-manifest/**.yaml
+    # Rating Module
+    - ./ratings-manifest/**.yaml
+    # Web Module
+    - ./web-manifest/**.yaml

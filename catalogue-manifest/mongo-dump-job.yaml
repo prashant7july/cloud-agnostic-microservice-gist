@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dump
+spec:
+  activeDeadlineSeconds: 100
+  template:
+    spec:
+      containers:
+      - name: mongo
+        image: mongo:3.6.1
+        command:
+        - /bin/bash
+        - -c
+        - mongodump	--gzip --host	db --archive=/dump/db.gz
+        volumeMounts:
+        - name: dump
+          mountPath: /dump
+      volumes:
+        - name: dump
+          hostPath:
+            path: /dump

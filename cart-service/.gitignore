@@ -1,0 +1,12 @@
+# Composer files
+node_modules/
+
+# netbean
+nbproject/
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

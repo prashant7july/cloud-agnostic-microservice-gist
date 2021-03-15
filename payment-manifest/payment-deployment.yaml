@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment
+  labels:
+    service: payment
+    stage: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: payment
+      stage: prod
+  template:
+    metadata:
+      labels:
+        service: payment
+        stage: prod
+    spec:
+      containers:
+      - name: payment
+        image: rs-payment:0.0.1
+        # agent networking access
+        ports:
+        - containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: ecommerce-config
+        resources:
+          limits:
+            cpu: 200m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 50Mi
+      restartPolicy: Always

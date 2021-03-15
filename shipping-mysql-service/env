@@ -1,0 +1,7 @@
+#MYSQL_ALLOW_EMPTY_PASSWORD=yes
+MYSQL_DATABASE=cities
+MYSQL_USER=shipping
+MYSQL_PASSWORD=secret
+MYSQL_PORT=3306
+MYSQL_ROOT_PASSWORD=supersecret
+#MYSQL_ENTRYPOINT_INITDB=./mysql/docker-entrypoint-initdb.d

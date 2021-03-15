@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  #namespace: ecommerce
+  name: ecommerce-config
+data:
+  REDIS_HOST: redis
+  REDIS_PORT: "6379"
+  # Catalogue
+  #MONGO_HOST: "catalogue-mongodb"
+  #MONGO_PORT: "27017"
+  MONGO_URL: "mongodb://catalogue-mongodb:27017"
+  # Used for Payment, Dispatch Both
+  AMQP_HOST: rabbitmq
+  AMQP_PORT: "5682"
+  AMQP_USER: user
+  AMQP_PASSWORD: password
+  # Shipping
+  SHIPPING_PDO_URL: "mysql:host=mysql;port=3307;dbname=shipping;charset=utf8mb4"
+  SHIPPING_DB_HOST: "mysql"
+  SHIPPING_DB_PORT: "3336"
+  # Rating
+  RATING_PDO_URL: "mysql:host=rating-mysql;port=3306;dbname=ratings;charset=utf8mb4"
+  RATING_MYSQL_USER: ratings
+  RATING_MYSQL_PASSWORD: secret

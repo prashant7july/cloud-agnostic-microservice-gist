@@ -1,0 +1,17 @@
+{
+  "name": "catalogue",
+  "version": "1.0.0",
+  "description": "product catalogue REST API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-pino-logger": "^4.0.0",
+    "mongodb": "^3.5.2",
+    "pino": "^5.16.0",
+    "pino-pretty": "^3.5.0"
+  }
+}

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rating-mysql
+  labels:
+    service: rating-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: rating-mysql
+  template:
+    metadata:
+      labels:
+        service: rating-mysql
+    spec:
+      containers:
+      - name: rating-mysql
+        image: rs-mysql-db:0.0.1
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: supersecret
+        ports:
+        - containerPort: 3306
+        resources:
+          limits:
+            cpu: 200m
+            memory: 1024Mi
+          requests:
+            cpu: 100m
+            memory: 700Mi
+      restartPolicy: Always
